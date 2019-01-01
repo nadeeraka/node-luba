@@ -2,6 +2,10 @@ const express = require("express");
 
 const app = express();
 const router = require("./routes/routes");
+const db = require("./db/connection");
+
+// lode the model
+require("./models/schema");
 
 app.use(router);
 
