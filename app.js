@@ -3,6 +3,12 @@ const express = require("express");
 const app = express();
 const router = require("./routes/routes");
 const db = require("./db/connection");
+const bodyParser = require("body-parser");
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+//body parser
+app.use(bodyParser.json());
 
 // lode the model
 require("./models/schema");
