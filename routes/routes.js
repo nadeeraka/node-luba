@@ -25,11 +25,12 @@ router.post("/idea", (req, res) => {
     error.push({ text: "Please add a title" });
   } else if (!req.body.details) {
     error.push({ text: "Please add a details" });
-  } else if (typeof req.body.title === "string") {
-    error.push({ text: "Invalid title" });
-  } else if (typeof req.body.details === "string") {
-    error.push({ text: "Invalid details" });
   }
+  // else if (typeof req.body.title === "string") {
+  //     error.push({ text: "Invalid title" });
+  //   } else if (typeof req.body.details === "string") {
+  //     error.push({ text: "Invalid details" });
+  //   }
   if (error.length > 0) {
     res.render("api/addIdea", {
       error,

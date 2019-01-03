@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 // lode the model
 require("./models/schema");
 
+// to choose mysql db use sql
+
 app.use(router);
 
 // set the view engine to ejs
