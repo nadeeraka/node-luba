@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-
+const drive = require("../config/db");
 const connect = async () => {
   try {
     const aws = await mongoose.connect(
-      "mongodb://localhost/vjot",
+      drive.mongoURI,
       { useNewUrlParser: true }
     );
 
