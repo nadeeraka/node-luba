@@ -1,6 +1,18 @@
+const ideas = require("../models/schema");
+
+exports.getIdeas = ("/idea",
+(req, res) => {
+  ideas
+    .find({})
+    .sort({ date: "desc" })
+    .then(ideas => {
+      res.render("api/idea", { title: "Idea", ideas });
+    });
+});
+
 exports.getPost = ("/idea",
 (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   let error = [];
   if (!req.body.title) {
     error.push({ text: "Please add a title" });
@@ -19,6 +31,17 @@ exports.getPost = ("/idea",
       details: req.body.details
     });
   } else {
-    res.send("ok");
+    const user = {
+      title: req.body.title,
+      details: req.body.details
+    };
+    new ideas(user)
+      .save()
+      .then(result => {
+        res.redirect("/idea");
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 });

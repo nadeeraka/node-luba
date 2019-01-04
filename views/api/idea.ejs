@@ -1,6 +1,22 @@
 <%- include('../layouts/header.ejs') %> <%- include('../layouts/nav.ejs') %>
-<h1>Ideas</h1>
 <div class="jumbotron text-center">
   <h2>Ideas</h2>
   <p>All ideas</p>
+</div>
+<%if(ideas){ %> <% for(let i of ideas){ %>
+<div class="container-fluid">
+
+  <div class="card card-body">
+    <h4>
+      <%= i.title %>
+    </h4>
+    <p>
+      <%= i.details %>
+    </p>
+  </div>
+
+</div>
+  <% }} else { %>
+  <p class="text-center">No idea found</p>
+  <% } %>
 </div>

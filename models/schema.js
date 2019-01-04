@@ -19,3 +19,5 @@ const ideaSchema = mongoose.Schema({
 const ideas = mongoose.model("ideas", ideaSchema);
 
 const insertData = () => {};
+
+module.exports = ideas;

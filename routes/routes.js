@@ -16,9 +16,7 @@ router.get("/addIdea", (req, res) => {
   res.render("api/addIdea", { title: "Add idea", e: null });
 });
 
-router.get("/idea", (req, res) => {
-  res.render("api/idea", { title: "Idea" });
-});
+router.get("/idea", controller.getIdeas);
 
 router.post("/idea", controller.getPost);
 
