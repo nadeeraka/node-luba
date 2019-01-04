@@ -2,7 +2,7 @@ const express = require("express");
 
 const app = express();
 const router = require("./routes/routes");
-//const db = require("./db/connection");
+const connect = require("./db/connection");
 const bodyParser = require("body-parser");
 
 // parse application/x-www-form-urlencoded
@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //require("./models/schema");
 
 // mongodb
-const connect = require("./db/nativeMongoDb");
+//const connect = require("./db/nativeMongoDb");
 // to choose mysql db use sql
 
 app.use(router);
@@ -22,9 +22,12 @@ app.use(router);
 // set the view engine to ejs
 app.set("view engine", "ejs");
 // calling to db
-connect(cli => {
-  console.log(cli), app.listen(8080);
-});
+// connect(cli => {
+//   console.log(cli), app.listen(8080);
+// });
+
+// typical mongo db connection
+connect();
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {

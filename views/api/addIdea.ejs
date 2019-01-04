@@ -2,7 +2,17 @@
 <div class="jumbotron text-center">
   <h2>Add Ideas</h2>
   <p>It is good idea to add idea</p>
+
+  <%if (!e) { %>
+  <p></p>
+  <%} else { %>
+  <p class="alert alert-danger">Errors found</p>
+  <% for(let err of e){ %>
+  <li><% err.text %></li>
+
+  <% }%> <% }%>
 </div>
+
 <div class="container">
   <div class="card card-body">
     <form action="/idea" method="POST">

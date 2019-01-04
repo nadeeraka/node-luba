@@ -1,9 +1,18 @@
 const mongoose = require("mongoose");
 
-mongoose
-  .connect(
-    "mongodb://127.0.0.1/vjot",
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log("Connect"))
-  .catch(error => console.log(error));
+const connect = async () => {
+  try {
+    const aws = await mongoose.connect(
+      "mongodb://localhost/vjot",
+      { useNewUrlParser: true }
+    );
+
+    if (aws) {
+      console.log("connect !");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = connect;

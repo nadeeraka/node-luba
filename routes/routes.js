@@ -13,7 +13,7 @@ router.get("/about", (req, res) => {
 });
 
 router.get("/addIdea", (req, res) => {
-  res.render("api/addIdea", { title: "Add idea" });
+  res.render("api/addIdea", { title: "Add idea", e: null });
 });
 
 router.get("/idea", (req, res) => {

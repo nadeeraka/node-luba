@@ -1,7 +1,7 @@
 exports.getPost = ("/idea",
 (req, res) => {
   console.log(req.body);
-  const error = [];
+  let error = [];
   if (!req.body.title) {
     error.push({ text: "Please add a title" });
   } else if (!req.body.details) {
@@ -14,7 +14,7 @@ exports.getPost = ("/idea",
   //   }
   if (error.length > 0) {
     res.render("api/addIdea", {
-      error,
+      e: error,
       title: req.body.title,
       details: req.body.details
     });
