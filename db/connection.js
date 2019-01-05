@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const drive = require("../config/db");
+const drive = require("../config/db/dbconfig");
 const connect = async () => {
   try {
     const aws = await mongoose.connect(
