@@ -22,6 +22,8 @@ router.post("/idea", controller.getPost);
 
 router.get("/idea/edit/:id", controller.getEditIdea);
 
+router.delete("/idea/delete/:id", controller.delete);
+
 router.put("/idea/edit/:id", controller.putIdea);
 
 router.use((req, res) => {

@@ -24,6 +24,22 @@ exports.getIdeas = ("/idea",
       res.render("api/idea", { title: "Idea", ideas, id: "" });
     });
 });
+// delete
+
+exports.delete = ("/idea/delete/:id",
+(req, res) => {
+  ideas
+    .deleteOne({
+      _id: req.params.id
+    })
+    .then(r => {
+      res.redirect("/idea");
+    })
+    .catch(err => {
+      console.error("errors found ", err);
+    });
+});
+
 //update || put from edit page
 exports.putIdea = ("/idea/edit/:id",
 (req, res) => {
@@ -38,55 +54,8 @@ exports.putIdea = ("/idea/edit/:id",
         console.log("save");
         res.redirect("/idea");
       });
-      //       then(ideas => {
-      //         res.redirect("api/idea", { title: "Idea" });
     });
 });
-// ideas
-//   .update(
-//     { _id: req.params.id },
-//     {
-//       $set: {
-//         title: req.body.title,
-//         details: req.body.details
-//       }
-//     }
-//   )
-//   .then(result => {
-//     console.log(result);
-//     result
-//       .save()
-//       .then(result => {
-//         res.redirect("/ideas");
-//       })
-//       .catch(err => {
-//         console.log("erros found", err);
-//       });
-//   })
-//   .catch(err => {
-//     console.log("erros found ", err);
-//   });
-
-// // putEdit(req.params.id, req.body);
-// ideas.findById(req.params.id).then(res => console.log(res));
-//});
-
-//update || put from edit page
-// exports.putIdea = ("/idea/edit/:id",
-// (req, res) => {
-//   ideas
-//     .findOne({
-//       _id: req.params.id
-//     })
-//     .then(ideas => {
-//       ideas.title = req.body.title;
-//       ideas.details = req.body.details;
-//       ideas.save();
-//       then(ideas => {
-//         res.redirect("api/idea", { title: "Idea" });
-//       });
-//     });
-// });
 
 // get edit idea
 exports.getEditIdea = ("/idea/edit/:id",
