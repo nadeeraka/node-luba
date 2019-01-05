@@ -4,7 +4,8 @@
 <%if(ideas){ %>
 <div class="container">
   <div class="card card-body">
-    <form action="/idea" method="POST">
+    <form action="/idea/edit/<%= ideas.id%>?_method=PUT" method="POST">
+      <input type="hidden" name="_method" value="PUT" />
       <div class="form-group">
         <label for="title">Title</label>
         <input

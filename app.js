@@ -4,12 +4,14 @@ const app = express();
 const router = require("./routes/routes");
 const connect = require("./db/connection");
 const bodyParser = require("body-parser");
-
+const methodOverride = require("method-override");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 //body parser
 app.use(bodyParser.json());
 
+// override with POST
+app.use(methodOverride("_method"));
 // lode the model {mongoose}
 //require("./models/schema");
 
