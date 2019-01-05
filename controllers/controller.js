@@ -1,5 +1,5 @@
 const ideas = require("../models/schema");
-
+const flash = require("connect-flash");
 const putEdit = async (id, r) => {
   //const ideas = require("../models/schema");
   if (!id) {
@@ -33,6 +33,7 @@ exports.delete = ("/idea/delete/:id",
       _id: req.params.id
     })
     .then(r => {
+      req.flash("success_msg", "Idea deleted");
       res.redirect("/idea");
     })
     .catch(err => {
