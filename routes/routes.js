@@ -26,6 +26,14 @@ router.delete("/idea/delete/:id", controller.delete);
 
 router.put("/idea/edit/:id", controller.putIdea);
 
+// user login
+router.get("/user/login", (req, res) => {
+  res.render("api/login", { title: "Login" });
+});
+router.get("/user/register", (req, res) => {
+  res.render("api/reg", { title: "Register" });
+});
+
 router.use((req, res) => {
   res.render("404", { title: "Error" });
 });
