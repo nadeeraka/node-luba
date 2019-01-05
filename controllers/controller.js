@@ -6,7 +6,17 @@ exports.getIdeas = ("/idea",
     .find({})
     .sort({ date: "desc" })
     .then(ideas => {
-      res.render("api/idea", { title: "Idea", ideas });
+      res.render("api/idea", { title: "Idea", ideas, id: "" });
+    });
+});
+exports.getEditIdea = ("/idea/edit/:id",
+(req, res) => {
+  ideas
+    .findOne({
+      _id: req.params.id
+    })
+    .then(ideas => {
+      res.render("api/edit", { title: "edit", ideas });
     });
 });
 

@@ -20,6 +20,8 @@ router.get("/idea", controller.getIdeas);
 
 router.post("/idea", controller.getPost);
 
+router.get("/idea/edit/:id", controller.getEditIdea);
+
 router.use((req, res) => {
   res.render("404", { title: "Error" });
 });
