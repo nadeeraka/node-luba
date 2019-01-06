@@ -5,6 +5,18 @@
     <div class="card card-body">
       <img src="/dist/img/2.png" alt="login logo" class="reg" />
       <h3 class="text-center mt-3">User Register</h3>
+      <%if (!e) { %>
+      <p></p>
+      <%} else { %>
+      <p class="alert alert-danger">Errors found</p>
+      <% for(let err of e){ %>
+      <li class="alert alert-danger">
+        <%= err.text %>
+      </li>
+      
+      <% }%>
+      <% }%>
+
       <form action="/user/register" method="POST" class="form-group">
         <div class="form-group">
           <label for="name">User Name</label>

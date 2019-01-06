@@ -2,9 +2,10 @@ const express = require("express");
 
 const router = express.Router();
 
-const { check } = require("express-validator/check");
+const { check, body } = require("express-validator/check");
 // to import controller
 const controller = require("../controllers/controller");
+const userController = require("../controllers/user");
 router.get("/", (req, res) => {
   res.render("index", { title: "Luba" });
 });
@@ -47,10 +48,24 @@ router.get("/user/login", (req, res) => {
 router.get("/user/register", (req, res) => {
   res.render("api/reg", { title: "Register" });
 });
-router.post("/user/register", (req, res) => {
-  console.log(req.body);
-  res.render("api/login", { title: "Register" });
-});
+router.post(
+  "/user/register",
+  body("name")
+    .isAlpha()
+    .withMessage("Please use letters")
+    .isLength({ max: 12, min: 3 })
+    .withMessage("Invalid Length"),
+  body("email")
+    .isEmail()
+    .withMessage("Invalid email"),
+  body("password")
+    .isLength({ max: 24, min: 4 })
+    .withMessage("Invalid Length"),
+  body("cPassword")
+    .isLength({ max: 24, min: 4 })
+    .withMessage("Invalid Length"),
+  userController.postReg
+);
 
 router.use((req, res) => {
   res.render("404", { title: "Error" });
