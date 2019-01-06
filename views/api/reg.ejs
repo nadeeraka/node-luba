@@ -1,3 +1,42 @@
 <%- include('../layouts/header.ejs') %> <%- include('../layouts/nav.ejs') %>
 
-<div class="container-fluid"><h3 class="text-center">User Register</h3></div>
+<div class="row">
+  <div class="col-md-6 mx-auto">
+    <div class="card card-body">
+      <img src="/dist/img/2.png" alt="login logo" class="reg" />
+      <h3 class="text-center mt-3">User Register</h3>
+      <form action="" class="form-group">
+        <div class="form-group">
+          <label for="name">User Name</label>
+          <input class="form-control" type="text" 
+          name="name" required />
+        </div>
+        <div class="form-group">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input class="form-control" type="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            class="form-control"
+            type="password"
+            name="password"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Confirm Password</label>
+          <input
+            class="form-control"
+            type="password"
+            name="cPassword"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-success">Register</button>
+      </form>
+    </div>
+  </div>
+<%- include('../layouts/footer.ejs') %>
+</div>
