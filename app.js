@@ -1,5 +1,4 @@
 const express = require("express");
-
 const app = express();
 const router = require("./routes/routes");
 const connect = require("./db/connection");
@@ -7,6 +6,7 @@ const bodyParser = require("body-parser");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const flash = require("connect-flash");
+const path = require("path");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 //body parser
@@ -23,6 +23,8 @@ app.use(
 // flash
 app.use(flash());
 
+//static folder
+app.use(express.static(path.join(__dirname, "public")));
 // global variables
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
