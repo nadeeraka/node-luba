@@ -8,7 +8,7 @@
   <%} else { %>
   <p class="alert alert-danger">Errors found</p>
   <% for(let err of e){ %>
-  <li><% err.text %></li>
+  <li class="alert alert-danger"><%= err.text %></li>
 
   <% }%> <% }%>
 </div>

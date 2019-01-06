@@ -19,7 +19,20 @@ router.get("/addIdea", (req, res) => {
 
 router.get("/idea", controller.getIdeas);
 
-router.post("/idea", check("title").isLength({ max: 40 }), controller.getPost);
+router.post(
+  "/idea",
+  check("title")
+    .isAlphanumeric()
+    .withMessage("Invalid type")
+    .isLength({ max: 40, min: 3 })
+    .withMessage("Invalid Length"),
+  check("details")
+    .isAlpha()
+    .withMessage("Please use text")
+    .isLength({ max: 50, min: 4 })
+    .withMessage("Invalid Length"),
+  controller.getPost
+);
 
 router.get("/idea/edit/:id", controller.getEditIdea);
 

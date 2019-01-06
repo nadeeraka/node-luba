@@ -77,22 +77,19 @@ exports.getEditIdea = ("/idea/edit/:id",
 exports.getPost = ("/idea",
 (req, res) => {
   //console.log(req.body);
+  let error = [];
   const validationError = validationResult(req);
   if (!validationError.isEmpty()) {
-    console.log("erros found");
+    console.log(validationError);
+    error.push({ text: validationError.array()[0].msg });
   }
-  let error = [];
   if (!req.body.title) {
     error.push({ text: "Please add a title" });
   }
   if (!req.body.details) {
     error.push({ text: "Please add a details" });
   }
-  // else if (req.body.title.length > 40) {
-  //     error.push({ text: "Please make it short" });
-  //   } else if (typeof (req.body.details > 80)) {
-  //     error.push({ text: "Please make it short" });
-  //   }
+
   if (error.length > 0) {
     res.render("api/addIdea", {
       e: error,
