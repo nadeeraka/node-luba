@@ -12,22 +12,29 @@ const connection = require("../util/secret");
 //     password: MONGO_DB_PASSWORD
 //   }
 // };
+const _db;
 const aws = "mongodb://127.0.0.1/max/";
-const connect = async callback => {
-  //   let con1 = await MongoClient.connect(
-  //     connection,
-  //     { useNewUrlParser: true }
-  //   );
-  try {
+const connect = async () => {
+    try {
     let con2 = await MongoClient.connect(
       aws,
       { useNewUrlParser: true }
     );
-    console.log(callback);
-    console.log("Connected !");
+    _db = client.db();
+       console.log("Connected !");
   } catch (error) {
     console.log(error);
   }
 };
 
-module.exports = connect;
+const getDb = () =>
+{
+  if(_db){
+    return _db;
+  }
+  return false;
+}
+
+
+exports.connect = connect;
+exports.getDb = getDb;

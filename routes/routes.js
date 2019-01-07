@@ -43,11 +43,22 @@ router.put("/idea/edit/:id", controller.putIdea);
 
 // user login
 router.get("/user/login", (req, res) => {
-  res.render("api/login", { title: "Login" });
+  res.render("api/login", { title: "Login", e: "" });
 });
 router.get("/user/register", (req, res) => {
-  res.render("api/reg", { title: "Register" });
+  res.render("api/reg", { title: "Register", e: "" });
 });
+router.post(
+  "/user/login",
+  body("email")
+    .isEmail()
+    .withMessage("Invalid email"),
+  body("password")
+    .isLength({ max: 24, min: 4 })
+    .withMessage("Invalid Length"),
+
+  userController.postLog
+);
 router.post(
   "/user/register",
   body("name")
@@ -66,6 +77,8 @@ router.post(
     .withMessage("Invalid Length"),
   userController.postReg
 );
+
+router.post("/user/register", userController.postLog);
 
 router.use((req, res) => {
   res.render("404", { title: "Error" });

@@ -46,10 +46,6 @@ app.use(router);
 
 // set the view engine to ejs
 app.set("view engine", "ejs");
-// calling to db
-// connect(cli => {
-//   console.log(cli), app.listen(8080);
-// });
 
 // typical mongo db connection
 connect();
