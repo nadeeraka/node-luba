@@ -78,6 +78,9 @@ exports.getPost = ("/idea",
 (req, res) => {
   //console.log(req.body);
   let error = [];
+  if (!(req.body.title && req.body.details)) {
+    errors.push({ text: "you have to fill all the fields" });
+  }
   const validationError = validationResult(req);
   if (!validationError.isEmpty()) {
     console.log(validationError);

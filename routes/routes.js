@@ -25,6 +25,7 @@ router.post(
   check("title")
     .isAlphanumeric()
     .withMessage("Invalid type")
+
     .isLength({ max: 40, min: 3 })
     .withMessage("Invalid Length"),
   check("details")
@@ -54,6 +55,8 @@ router.post(
     .isEmail()
     .withMessage("Invalid email"),
   body("password")
+    .isEmpty()
+    .withMessage("Invalid password please add value")
     .isLength({ max: 24, min: 4 })
     .withMessage("Invalid Length"),
 
