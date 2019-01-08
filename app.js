@@ -8,6 +8,7 @@ const session = require("express-session");
 const flash = require("connect-flash");
 const path = require("path");
 const authRoutes = require("./routes/auth");
+const mLabConnect = require("./db/auth/db");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 //body parser
@@ -51,6 +52,8 @@ app.set("view engine", "ejs");
 
 // typical mongo db connection
 connect();
+// connect to mLab server
+mLabConnect();
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
