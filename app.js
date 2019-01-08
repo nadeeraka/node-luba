@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const flash = require("connect-flash");
 const path = require("path");
+const authRoutes = require("./routes/auth");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 //body parser
@@ -41,9 +42,10 @@ app.use(methodOverride("_method"));
 // mongodb
 //const connect = require("./db/nativeMongoDb");
 // to choose mysql db use sql
+// auth routes
+app.use("/auth", authRoutes);
 
 app.use(router);
-
 // set the view engine to ejs
 app.set("view engine", "ejs");
 

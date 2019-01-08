@@ -6,6 +6,7 @@ const { check, body } = require("express-validator/check");
 // to import controller
 const controller = require("../controllers/controller");
 const userController = require("../controllers/user");
+
 router.get("/", (req, res) => {
   res.render("index", { title: "Luba" });
 });
@@ -55,8 +56,6 @@ router.post(
     .isEmail()
     .withMessage("Invalid email"),
   body("password")
-    .isEmpty()
-    .withMessage("Invalid password please add value")
     .isLength({ max: 24, min: 4 })
     .withMessage("Invalid Length"),
 
@@ -80,7 +79,6 @@ router.post(
     .withMessage("Invalid Length"),
   userController.postReg
 );
-
 router.post("/user/register", userController.postLog);
 
 router.use((req, res) => {

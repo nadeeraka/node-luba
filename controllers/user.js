@@ -4,6 +4,7 @@ const _ = require("lodash");
 const flash = require("connect-flash");
 const { validationResult } = require("express-validator/check");
 const bcrypt = require("bcryptjs");
+const passport = require("passport");
 
 const findEmail = async email => {
   let result = await User.findOne({
@@ -94,7 +95,7 @@ exports.postReg = ("/user/register",
 
 // user login post
 exports.postLog = ("/user/register",
-(req, res) => {
+(req, res, next) => {
   let errors = [];
   if (!(req.body.email && req.body.password)) {
     errors.push({ text: "you have to fill all the fields" });
@@ -112,7 +113,13 @@ exports.postLog = ("/user/register",
       password: req.body.password
     });
   } else {
-    res.render("api/idea", { title: "idea", ideas: "" });
+    passport.authenticate("local", {
+      successRedirect: "/ideas",
+      failureRedirect: "user/login",
+      failureFlash: true,
+      successFlash: true,
+      successMessage: true
+    });
   }
   //req.isLogin = true;
 });
