@@ -13,13 +13,24 @@ passport.use(
       //     User.findOrCreate({ googleId: profile.id }, function (err, user) {
       //         return done(err, user);
       console.log(profile);
-      new User({
-        googleId: profile.id,
-        userName: profile.displayName,
-        email: profile.emails[0].value
-      })
-        .save()
-        .then(res => console.log(res));
+      //check user already in the db
+      User.findOne({
+        googleId: profile.id
+      }).then(res => {
+        if (res) {
+          //user already in the db
+          console.log("user in the db");
+        } else {
+          // if not save the user
+          new User({
+            googleId: profile.id,
+            userName: profile.displayName,
+            email: profile.emails[0].value
+          })
+            .save()
+            .then(res => console.log(res));
+        }
+      });
     }
   )
 );
