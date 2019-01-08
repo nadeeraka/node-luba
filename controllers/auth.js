@@ -5,5 +5,5 @@ const passport = require("passport");
 // auth with google
 exports.getGoogle = ("/google",
 (req, res) => {
-  res.send("ok");
+  res.render("api/auth/login", { title: "Login" });
 });
