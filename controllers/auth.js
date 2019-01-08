@@ -1,9 +1,10 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
+const passportConfig = require("../config/security/passport");
 
 // auth with google
 exports.getGoogle = ("/google",
-(req, res) => {
-  res.render("api/auth/login", { title: "Login" });
-});
+passport.authenticate("google", {
+  scope: ["profile", "email"]
+}));
