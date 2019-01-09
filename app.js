@@ -9,8 +9,24 @@ const flash = require("connect-flash");
 const path = require("path");
 const authRoutes = require("./routes/auth");
 const mLabConnect = require("./db/auth/db");
+const cookieSession = require("cookie-session");
+const cookieKey = require("./util/secret");
+const passport = require("passport");
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// use cookie-session
+app.use(
+  cookieSession({
+    maxAge: 24 * 7 * 60 * 60 * 1000,
+    keys: [cookieKey]
+  })
+);
+// init passport
+app.use(passport.initialize());
+// start passport session
+app.use(passport.session());
 //body parser
 app.use(bodyParser.json());
 //express session
