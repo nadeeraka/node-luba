@@ -12,7 +12,7 @@ const mLabConnect = require("./db/auth/db");
 const cookieSession = require("cookie-session");
 const cookieKey = require("./util/secret");
 const passport = require("passport");
-
+const profileRoutes = require("./routes/profile");
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -60,6 +60,7 @@ app.use(methodOverride("_method"));
 //const connect = require("./db/nativeMongoDb");
 // to choose mysql db use sql
 // auth routes
+app.use("/profile", profileRoutes);
 app.use("/auth", authRoutes);
 
 app.use(router);
